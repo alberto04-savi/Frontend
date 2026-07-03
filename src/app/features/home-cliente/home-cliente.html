@@ -1,0 +1,151 @@
+<div class="ds-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" [class.chiusa]="!sidebarAperta">
+
+    <div class="sidebar-topbar">
+      <button class="btn-hamburger" (click)="toggleSidebar()" [title]="sidebarAperta ? 'Chiudi menu' : 'Apri menu'">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="sidebar-profile" *ngIf="sidebarAperta">
+      <div class="avatar">🐶</div>
+      <div class="ds-info">
+        <span class="ds-nome">{{ nomeCliente }}</span>
+        <span class="ds-ruolo">Cliente</span>
+      </div>
+    </div>
+
+    <!-- linea orizzontale -->
+    <hr class="divisore" *ngIf="sidebarAperta"/>
+
+    <nav class="menu" *ngIf="sidebarAperta">
+      
+      <a class="voce-menu" routerLink="/home-cliente" routerLinkActive="attivo" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="icona-menu">🏠</span>
+        <span class="label-menu">Home</span>
+      </a>
+      
+      <a class="voce-menu" routerLink="prenotazioni" routerLinkActive="attivo">
+        <span class="icona-menu">📋</span>  
+        <span class="label-menu">Prenotazioni</span>
+      </a>
+      <a class="voce-menu" routerLink="recensioni" routerLinkActive="attivo">
+        <span class="icona-menu">⭐</span>
+        <span class="label-menu">Recensioni</span>
+      </a>
+      <a class="voce-menu" routerLink="/home-cliente/profilo" routerLinkActive="attivo">
+        <span class="icona-menu">👤</span>
+        <span class="label-menu">Profilo</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer" *ngIf="sidebarAperta">
+      <button class="btn-logout" (click)="logout()">
+        <span class="icona-menu">🚪</span>
+        <span class="label-menu">Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- CONTENUTO PRINCIPALE  -->
+  <main class="contenuto-principale">
+
+    <!-- Home view: visibile solo sulla rotta radice /home-cliente -->
+    <div class="home-view" *ngIf="mostraHome">
+
+      <div class="page-header">
+        <h1>Trova il tuo servizio</h1>
+        <p>Cerca dogsitter e campi di addestramento vicino a te</p>
+      </div>
+
+      <!-- Filtri -->
+      <section class="filtro">
+        <label>Tipo
+          <select [(ngModel)]="filtroTipo" (ngModelChange)="onFiltroChange()">
+            <option value="tutti">Tutti</option>
+            <option value="lezione">Lezione</option>
+            <option value="dogsitting">DogSitting</option>
+          </select>
+        </label>    
+
+        <label>Taglia cane
+          <select [(ngModel)]="filtroTaglia" (ngModelChange)="onFiltroChange()">
+            <option value="">Tutte</option>
+            <option *ngFor="let t of taglieDisponibili" [value]="t">{{ t }}</option>
+          </select>
+        </label>
+
+        <label>Provincia
+          <input type="text" [(ngModel)]="filtroCitta" (ngModelChange)="onFiltroChange()" placeholder="Es. MI" />
+        </label>
+
+        <button class="btn-reset" (click)="resetFiltri()">Reset</button>
+      </section>
+
+      <!-- ── Elenco Dogsitter ── -->
+      <section class="lista" *ngIf="filtroTipo === 'tutti' || filtroTipo === 'dogsitting'">
+        <div class="lista-header">
+          <h2>Dogsitter</h2>
+          <span class="count">{{ filteredDogsitters.length }}</span>
+        </div>
+
+        <div class="cards-grid" *ngIf="filteredDogsitters.length > 0">
+
+          
+          <a class="card"
+             *ngFor="let d of filteredDogsitters"
+             [routerLink]="['info-dogsitter', d.username]">
+            <div class="avatar-card">🐕</div>
+            <div class="card-body">
+              <div class="card-titolo">{{ d.nomeBattesimo }} {{ d.cognome }}</div>
+              <div class="card-meta"><span>📍</span> {{ d.provincia }}</div>
+              <div class="card-meta"><span>🐾</span> {{ (d.taglieCani || []).join(', ') || '—' }}</div>
+              <span class="card-cta">Vedi profilo →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="empty-state" *ngIf="filteredDogsitters.length === 0">
+          Nessun dogsitter trovato con i filtri selezionati.
+        </div>
+      </section>
+
+      <!-- ── Elenco Campi Addestramento ── -->
+      <section class="lista" *ngIf="filtroTipo === 'tutti' || filtroTipo === 'lezione'">
+        <div class="lista-header">
+          <h2>Campi di Addestramento</h2>
+          <span class="count">{{ filteredCampi.length }}</span>
+        </div>
+
+        <div class="cards-grid" *ngIf="filteredCampi.length > 0">
+          <a class="card"
+             *ngFor="let c of filteredCampi"
+             [routerLink]="['info-campo', c.nome]">
+            <div class="avatar-card">🏕️</div>
+            <div class="card-body">
+              <div class="card-titolo">{{ c.nome }}</div>
+              <div class="card-meta"><span>📍</span> {{ c.via }} {{ c.nCivico }}, {{ c.provincia }}</div>
+              <div class="card-meta"><span>🕐</span> {{ c.orarioApertura }}</div>
+              <span class="card-cta">Vedi profilo →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="empty-state" *ngIf="filteredCampi.length === 0">
+          Nessun campo trovato con i filtri selezionati.
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Componenti figli (prenotazioni, profilo, recensioni, ecc.) -->
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

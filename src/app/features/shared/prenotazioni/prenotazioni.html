@@ -1,0 +1,93 @@
+<div class="pren-container">
+
+  <!-- INTESTAZIONE-->
+  <div class="intestazione">
+
+    <div class="titolo-sezione">
+      <span class="icona-titolo">{{ ruolo === 'dogsitter' ? '📋' : '🐾' }}</span>
+      <h2>Le mie Prenotazioni</h2>
+    </div>
+
+
+  </div>
+
+  <!-- BARRA FILTRI -->
+  <div class="barra-filtro">
+
+    <!-- FILTRI CLIENTE -->
+    <ng-container *ngIf="ruolo === 'cliente'">
+      <select class="select-filtro" [(ngModel)]="filtroCategoriaPrenotazione" (change)="applicaFiltri()">
+        <option value="">Tutti i servizi</option>
+        <option value="dogsitter">Dog Sitter</option>
+        <option value="campo">Campo Addestramento</option>
+      </select>
+      <input class="input-ricerca" type="text" [(ngModel)]="filtroNomeCane" placeholder="Filtra per nome cane..." (keyup)="applicaFiltri()">
+      
+      <!--calendario nativo del browser-->
+      <input class="input-data" type="date" [(ngModel)]="filtroDataCliente" pattern="\d{4}-\d{2}-\d{2}" (change)="applicaFiltri()">
+         <input class="input-data" type="time" [(ngModel)]="filtroOraCliente" placeholder="Ora (HH:mm)" (change)="applicaFiltri()">
+    </ng-container>
+
+    <!-- FILTRI DOG SITTER -->
+    <ng-container *ngIf="ruolo === 'dogsitter'">
+      <input class="input-ricerca" type="text" [(ngModel)]="filtroNomeCaneDogsitter" placeholder="Cerca per nome cane..." (keyup)="applicaFiltri()">
+      <select class="select-filtro" [(ngModel)]="filtroCategoriaDogsitter" (change)="applicaFiltri()">
+        <option value="">Tutte le categorie</option>
+        <option *ngFor="let cat of categorieDisponibili" [value]="cat">{{ cat }}</option>
+      </select>
+      <input class="input-data" type="date" [(ngModel)]="filtroDataDogsitter" pattern="\d{4}-\d{2}-\d{2}" (change)="applicaFiltri()">
+      <input class="input-data" type="time" [(ngModel)]="filtroOraDogsitter" placeholder="Ora (HH:mm)" (change)="applicaFiltri()">
+    </ng-container>
+
+    <button class="btn-reset" (click)="resetFiltri()">✕ Reset</button>
+
+  </div>
+
+  <!-- CONTATORE PRENOTAZIONI -->
+  <p class="contatore">
+    {{ prenotazioniFiltrate.length }}
+    {{ prenotazioniFiltrate.length === 1 ? 'prenotazione trovata' : 'prenotazioni trovate' }}
+  </p>
+
+  <!-- LISTA PRENOTAZIONI -->
+  <div *ngIf="prenotazioniFiltrate.length > 0; else listaVuota" class="tabella-wrapper">
+    <table class="tabella">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cane</th>   
+          <th>Categoria</th>
+          <th>Data</th>
+          <th>Ora</th>
+          <th>Prezzo</th>
+          <th *ngIf="ruolo === 'dogsitter'">Cliente</th>
+          <th *ngIf="ruolo === 'cliente'">Staff</th>
+          <th class="col-azioni">Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of prenotazioniFiltrate">
+          <td><span class="badge-id">#{{ p.codiceId }}</span></td>
+          <td class="td-cane">🐕 {{ p.nomeCane }}</td>
+          <td><span class="badge-categoria">{{ p.categoriaServizio || p.CategoriaLezione }}</span></td>
+          <td>{{ formattaData(p.dataSvolgimento) }}</td>
+          <td>{{ p.oraSvolgimento }}</td>
+          <td class="td-prezzo">€ {{ p.prezzoPattuito }}</td>
+          <td *ngIf="ruolo === 'dogsitter'" class="td-utente">{{ p.usernameCliente }}</td>
+          <td *ngIf="ruolo === 'cliente'" class="td-utente">{{ p.usernameDogsitter || p.nomeCampo }}</td>
+          <td class="col-azioni">
+            <button class="btn-modifica" (click)="modifica(p)" title="Modifica">✏️</button>
+            <button class="btn-elimina" (click)="elimina(p)" title="Elimina">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #listaVuota>
+    <div class="lista-vuota">
+      <span class="icona-vuota">📭</span>
+      <p>Nessuna prenotazione trovata con i filtri attuali.</p>
+    </div>
+  </ng-template>
+</div>

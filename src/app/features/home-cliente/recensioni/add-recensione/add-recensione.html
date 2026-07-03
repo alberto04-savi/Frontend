@@ -1,0 +1,78 @@
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <button class="btn-back" (click)="annulla()">← Indietro</button>
+    <h1 class="page-title">{{ titoloPagina }}</h1>
+  </div>
+
+  <div class="form-card">
+
+    <!-- A chi (dogsitter)  -->
+    <div class="campo">
+      <label class="campo__label">A:</label>
+
+      <ng-container *ngIf="!isModifica; else modificaBlock">
+        <select
+          class="campo__select"
+          [(ngModel)]="usernameDogsitter"
+        >
+          <option value="" disabled selected>Seleziona un dogsitter…</option>
+          <option *ngFor="let d of dogsitterDisponibili" [value]="d">{{ d }}</option>
+        </select>
+      </ng-container>
+
+      <ng-template #modificaBlock>
+        <div class="campo__dest-readonly">
+          <div class="dest-avatar">
+            {{ usernameDogsitter.slice(0, 2).toUpperCase() }}
+          </div>
+          <div class="dest-info">
+            <span class="dest-nome">{{ usernameDogsitter }}</span>
+            <span class="dest-tipo">🐶 Dogsitter</span>
+          </div>
+          <span class="dest-lock" title="Non modificabile">🔒</span>
+        </div>
+      </ng-template>
+    </div>
+
+    <!--  Voto  -->
+    <div class="campo">
+      <label class="campo__label">Voto (da 1 a 5)</label>
+      <div class="stelle-wrap">
+        <button
+          *ngFor="let s of range5"
+          class="stella-btn"
+          [class.stella-btn--on]="s <= voto"
+          (click)="setVoto(s)"
+        >★</button>
+        <span *ngIf="voto > 0" class="voto-label">{{ voto }} / 5</span>
+      </div>
+    </div>
+
+    <!-- Commento  -->
+    <div class="campo">
+      <label class="campo__label">Commento</label>
+      <textarea
+        class="campo__textarea"
+        placeholder="Scrivi la tua esperienza…"
+        rows="5"
+        [(ngModel)]="commento"
+      ></textarea>
+    </div>
+
+    <!-- Azioni  -->
+    <div class="form-azioni">
+      <button class="btn-annulla" (click)="annulla()">Annulla</button>
+      <button
+        class="btn-conferma"
+        [disabled]="!formValido()"
+        (click)="conferma()"
+      >
+        Conferma
+      </button>
+    </div>
+
+  </div>
+
+</div>

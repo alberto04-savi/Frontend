@@ -1,0 +1,177 @@
+<div class="reg-campo-shell">
+
+  <!-- Header -->
+  <div class="reg-header">
+    <button class="btn-back" (click)="annulla()">← Torna alla lista</button>
+    <h1>{{ isModifica ? 'Modifica campo' : 'Nuovo campo di addestramento' }}</h1>
+  </div>
+
+  <!-- Caricamento -->
+  <div class="loading-state" *ngIf="caricamento">Caricamento dati...</div>
+
+  <!-- Form principale -->
+  <div class="reg-body" *ngIf="!caricamento">
+
+    <!-- Feedback -->
+    <div class="toast-success" *ngIf="salvato">✅ Campo salvato con successo!</div>
+    <div class="errore-msg"    *ngIf="errore">⚠️ {{ errore }}</div>
+
+    <!--  Sezione dati campo  -->
+    <section class="sezione-card">
+      <h2 class="sezione-titolo">📋 Dati del campo</h2>
+
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label for="nome">Nome campo *</label>
+          <input
+            id="nome"
+            type="text"
+            [(ngModel)]="campo.nome"
+            [disabled]="isModifica"
+            placeholder="Es. Scuola Canina Milano"
+            maxlength="100" />
+          <small *ngIf="isModifica" class="hint">Il nome non può essere modificato (chiave primaria).</small>
+        </div>
+
+        <div class="form-group">
+          <label for="via">Via / Piazza *</label>
+          <input id="via" type="text" [(ngModel)]="campo.via" placeholder="Es. Via Garibaldi" />
+          <span class="match-msg ok"    *ngIf="campo.via.length > 0 && viaValida">✅ Formato corretto</span>
+          <span class="match-msg error" *ngIf="campo.via.length > 0 && !viaValida">❌ Deve iniziare con "Via [Nome]"</span>
+        </div>
+
+        <div class="form-group small">
+          <label for="nCivico">N° civico</label>
+          <input id="nCivico" type="text" [(ngModel)]="campo.nCivico" placeholder="Es. 12" maxlength="10" />
+          <span class="match-msg ok"    *ngIf="campo.nCivico.length > 0 && nCivicoValido">✅ OK</span>
+          <span class="match-msg error" *ngIf="campo.nCivico.length > 0 && !nCivicoValido">❌ Solo numeri</span>
+        </div>
+
+        <div class="form-group small">
+          <label for="cap">CAP *</label>
+          <input id="cap" type="text" [(ngModel)]="campo.cap" placeholder="Es. 20100" maxlength="5" />
+          <span class="match-msg ok"    *ngIf="campo.cap.length > 0 && capValido">✅ CAP valido</span>
+          <span class="match-msg error" *ngIf="campo.cap.length > 0 && !capValido">❌ Richieste 5 cifre</span>
+        </div>
+
+        <div class="form-group">
+          <label for="provincia">Provincia *</label>
+          <select id="provincia" [(ngModel)]="campo.provincia">
+            <option value="" disabled>-- Seleziona --</option>
+            <option *ngFor="let p of province" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="nTel">Telefono</label>
+          <input id="nTel" type="tel" [(ngModel)]="campo.nTel" placeholder="Es. 3331234567" maxlength="10" />
+          <span class="match-msg ok"    *ngIf="campo.nTel.length  > 0 && nTelValido">✅ Numero valido</span>
+          <span class="match-msg error" *ngIf="campo.nTel.length  > 0 && !nTelValido">❌ Inserisci esattamente 10 cifre</span>
+        </div>
+
+        <div class="form-group">
+          <label for="orarioApertura">Orario di apertura</label>
+          <input 
+            id="orarioApertura" 
+            type="text" 
+            [(ngModel)]="campo.orarioApertura" 
+            placeholder="Es. Mar-Sab 08:00-17:00" />
+          
+          <span class="match-msg ok"    *ngIf="campo.orarioApertura && campo.orarioApertura.length > 0 && orarioValido">✅ Formato corretto</span>
+          <span class="match-msg error" *ngIf="campo.orarioApertura && campo.orarioApertura.length > 0 && !orarioValido">❌ Richiesto formato: GGG-GGG HH:MM-HH:MM (es. Mar-Sab 08:00-17:00)</span>
+        </div>
+
+      </div>
+
+      <!-- Bottoni salvataggio campo -->
+      <div class="form-azioni">
+        <button class="btn-annulla" (click)="annulla()">Annulla</button>
+        <button class="btn-salva" (click)="salva()">
+          {{ isModifica ? 'Salva modifiche' : 'Crea campo' }}
+        </button>
+      </div>
+    </section>
+
+    <!--  Sezione lezioni (se siamo in modalità modifica) -->
+    <section class="sezione-card" *ngIf="isModifica">
+      <div class="sezione-header">
+        <h2 class="sezione-titolo">🎓 Lezioni associate</h2>
+        <button class="btn-nuova-lezione" (click)="apriFormLezione()">+ Nuova lezione</button>
+      </div>
+
+      <div class="empty-state" *ngIf="lezioni.length === 0">
+        Nessuna lezione ancora associata a questo campo.
+      </div>
+
+      <div class="lezioni-lista">
+        <div class="lezione-row" *ngFor="let l of lezioni; let i = index">
+          <div class="lezione-info">
+            <span class="lezione-tipo">{{ l.tipologia }}</span>
+            <span class="lezione-data">📅 {{ l.data }} alle {{ l.ora }}</span>
+            <span class="lezione-dettaglio">👥 max {{ l.maxPartecipanti }} | 💶 € {{ l.costo }}</span>
+          </div>
+          <div class="lezione-azioni">
+            <button class="btn-edit" (click)="apriFormLezione(i)">✏️</button>
+            <button class="btn-del"  (click)="eliminaLezione(i)">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+<!-- OVERLAY form lezione  -->
+<div class="overlay" *ngIf="mostraFormLezione" (click)="chiudiFormLezione()">
+  <div class="lezione-panel" (click)="$event.stopPropagation()">
+
+    <div class="panel-header">
+      <h3>{{ lezioneEditIndex !== null ? 'Modifica lezione' : 'Nuova lezione' }}</h3>
+      <button class="btn-chiudi" (click)="chiudiFormLezione()">✕</button>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Data *</label>
+        <input type="date" [(ngModel)]="nuovaLezione.data" pattern="\d{4}-\d{2}-\d{2}" [disabled]="modificaLezione"/>
+      </div>
+
+      <div class="form-group">
+        <label>Ora </label>
+        <input type="time" [(ngModel)]="nuovaLezione.ora" [disabled]="modificaLezione" />
+      </div>
+
+      <div class="form-group">
+        <label>Tipologia </label>
+        <select [(ngModel)]="nuovaLezione.tipologia" (ngModelChange)="onTipologiaChange()" [disabled]="modificaLezione">
+          <option value="">Seleziona</option>
+          <option *ngFor="let tipo of tipologieKeys" [value]="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+
+      <div class="form-group small">
+        <label>Costo (€) *</label>
+        <input type="number" [(ngModel)]="nuovaLezione.costo"  disabled />
+      </div>
+
+      <div class="form-group small">
+        <label>Max partecipanti</label>
+        <input type="number" [(ngModel)]="nuovaLezione.maxPartecipanti" min="1" step="1" />
+      </div>
+
+    </div>
+
+    <div class="panel-azioni">
+      <button class="btn-annulla" (click)="chiudiFormLezione()">Annulla</button>
+      <button class="btn-salva"
+              [disabled]="!nuovaLezione.data || !nuovaLezione.ora || !nuovaLezione.tipologia"
+              (click)="salvaLezione()">
+        Salva
+      </button>
+    </div>
+
+  </div>
+</div>

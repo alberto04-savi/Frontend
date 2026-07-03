@@ -1,0 +1,192 @@
+/* ── Tavolozza Colori PAWTAL ── */
+/* Verde scuro corporativo: #3a5f45 */
+/* Verde chiaro soft:       #c8e6c0 */
+/* Sfondo dell'app:         #f0f7f0 */
+
+.profilo-page {
+  flex: 1;
+  background-color: #f0f7f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.intestazione {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.titolo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icona-titolo {
+  font-size: 2rem;
+}
+
+.titolo {
+  font-size: 1.6rem;
+  color: #3a5f45;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-salva {
+  background-color: #3a5f45;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-salva:hover {
+  background-color: #2c4933;
+}
+
+.btn-salva:active {
+  transform: scale(0.98);
+}
+
+.form-card {
+  width: 100%;
+  max-width: 750px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(58, 95, 69, 0.08);
+  box-sizing: border-box;
+}
+
+.sezione {
+  margin-bottom: 28px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed rgba(58, 95, 69, 0.15);
+}
+
+.sezione:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sezione-titolo {
+  font-size: 1.2rem;
+  color: #3a5f45;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+/* ── Stile dei campi del form ── */
+.riga-form {
+  display: flex; /* Flexbox per allineare i campi in riga */
+  gap: 16px; /* Spazio tra i campi */
+  margin-bottom: 14px;
+  flex-wrap: wrap; /*a capo*/
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 180px;
+  margin-bottom: 14px;
+}
+
+.campo-form label {
+  font-size: 0.85rem;
+  color: #3a5f45;
+  font-weight: bold;
+}
+
+.campo-form input {
+  padding: 10px 14px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.campo-form input:focus {
+  border-color: #3a5f45;
+}
+
+
+
+/* ── Messaggi di validazione inline ── */
+.match-msg {
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.match-msg.ok {
+  color: #3a5f45;
+}
+
+.match-msg.error {
+  color: #c0392b;
+}
+
+
+/* ── Select provincia (stesso stile degli input) ── */
+.campo-form select {
+  padding: 10px 14px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  color: #333;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.campo-form select:focus {
+  border-color: #3a5f45;
+}
+
+/* ── Bottone Torna alla lista ── */
+.btn-torna {
+  background: none;
+  border: none;
+  color: #3a5f45;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.btn-torna:hover {
+  color: #2c4933;
+  background-color: rgba(58, 95, 69, 0.05); /* Un leggero effetto feedback allo sfarfallio */
+}
+
+.btn-torna:active {
+  transform: scale(0.98);
+}

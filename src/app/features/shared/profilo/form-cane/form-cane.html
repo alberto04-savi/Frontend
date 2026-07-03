@@ -1,0 +1,48 @@
+<div class="form-page-container">
+  <div class="form-card">
+    <h2>{{ inModifica ? '✏️ Modifica Dati Cane' : '🐾 Registra Nuovo Cane' }}</h2>
+    
+    <form (ngSubmit)="salva()">
+      <div class="campo-form">
+        <label>Nome Cane</label>
+        <input type="text" [(ngModel)]="cane.nome" name="nome" placeholder="Es. Thor" >
+      </div>
+
+      <div class="campo-form">
+        <label>Razza</label>
+        <input type="text" [(ngModel)]="cane.razza" name="razza" placeholder="Es. Golden Retriever">
+      </div>
+
+      <div class="campo-form">
+        <label>Numero Microchip (15 cifre)</label>
+        <input type="text" [(ngModel)]="cane.nMicrochip" name="nMicrochip" placeholder="Inserisci microchip (esattamente 15 cifre)" minlength="15" maxlength="15" pattern="[0-9]{15}" [disabled]="inModifica" >
+      </div>
+
+      <div class="campo-form">
+        <label>Data di Nascita</label>
+        <input type="date" [(ngModel)]="cane.dataNascita" name="dataNascita"  min="2000-01-01" max="2026-06-24">
+        <span class="match-msg ok"    *ngIf="cane.dataNascita.length > 0 && dataNascitaValida">✅ Data valida</span>
+        <span class="match-msg error" *ngIf="cane.dataNascita.length > 0 && !dataNascitaValida">❌ Data non valida o nel futuro</span>
+      </div>
+
+      <div class="campo-form">
+        <label>Taglia</label>
+        <select [(ngModel)]="cane.taglia" name="taglia">
+          <option value="Piccola">Piccola</option>
+          <option value="Media">Media</option>
+          <option value="Grande">Grande</option>
+        </select>
+      </div>
+
+      <div class="campo-form">
+        <label>Note sul Comportamento</label>
+        <textarea [(ngModel)]="cane.noteComportamento" name="noteComportamento" rows="3" placeholder="Es. Socievole con altri cani, ha paura dei tuoni..."></textarea>
+      </div>
+
+      <div class="gruppo-pulsanti">
+        <button type="submit" class="btn-conferma">Conferma</button>
+        <button type="button" class="btn-annulla" (click)="annulla()">Annulla</button>
+      </div>
+    </form>
+  </div>
+</div>

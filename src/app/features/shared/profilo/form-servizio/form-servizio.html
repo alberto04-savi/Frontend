@@ -1,0 +1,47 @@
+<div class="form-page-container">
+  <div class="form-card">
+    
+    <!-- TITOLO DINAMICO -->
+    <h2 *ngIf="!isModifica">➕ Attiva un nuovo servizio</h2>
+    <h2 *ngIf="isModifica">✏️ Modifica il servizio</h2>
+    
+    <!-- DESCRIZIONE -->
+    <p class="descrizione-info">
+      Seleziona la categoria, indica la durata prevista e il prezzo. Puoi offrire servizi multipli della stessa categoria purché abbiano durata diversa.
+    </p>
+
+    <!-- FORM PER SERVIZIO OFFERTO -->
+    <div class="campo-form">
+      <label>Seleziona Categoria</label>
+      <select [(ngModel)]="categoriaSelezionata" class="select-tendina">
+        <option value="" disabled selected>-- Scegli una categoria disponibile --</option>
+        <option *ngFor="let tipo of tipologieGlobaliDB" [value]="tipo">
+          🎯 {{ tipo }}
+        </option>
+      </select>
+    </div>
+
+    <div class="campo-form">
+      <label>Prezzo Listino (€)</label>
+      <input type="number" [(ngModel)]="prezzoListino" class="input-numerico" placeholder="Es. 20" min="0" step="1" />
+    </div>
+
+    <div class="campo-form">
+      <label>Durata del Servizio (in minuti)</label>
+      <input type="number" [(ngModel)]="durata" class="input-numerico" placeholder="Es. 45" min="1" step="10" />
+    </div>
+
+    <p *ngIf="tipologieGlobaliDB.length === 0" class="alert-info">
+      ⏳ Connessione al database delle categorie in corso...
+    </p>
+
+    <div class="gruppo-pulsanti">
+      <button type="button" class="btn-conferma" (click)="salvaServizioOfferto()" 
+              [disabled]="!categoriaSelezionata || !durata || !prezzoListino">
+        {{ isModifica ? 'Salva Modifiche' : 'Attiva Servizio' }}
+      </button>
+      <button type="button" class="btn-annulla" (click)="annulla()">Annulla</button>
+    </div>
+
+  </div>
+</div>

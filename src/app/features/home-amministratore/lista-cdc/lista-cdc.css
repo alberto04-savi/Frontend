@@ -1,0 +1,290 @@
+/* ── Colori ripresi dalla home-amministratore ── */
+/* Verde scuro:  #3a5f45                          */
+/* Verde chiaro: #c8e6c0                          */
+/* Sfondo:       #f0f7f0                          */
+
+/* ── Contenitore principale ── */
+.lista-page {
+  flex: 1;
+  background-color: #f0f7f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  font-family: Arial, sans-serif;
+}
+
+/* ── Intestazione: torna | titolo | aggiungi ── */
+.intestazione {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.titolo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icona-titolo {
+  font-size: 2rem;
+}
+
+.titolo {
+  font-size: 1.8rem;
+  color: #3a5f45;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* ── Pulsante Torna ── */
+.btn-torna {
+  background: none;
+  border: 2px solid #3a5f45;
+  color: #3a5f45;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-torna:hover {
+  background-color: #3a5f45;
+  color: #ffffff;
+}
+
+/* ── Pulsante Aggiungi ── */
+.btn-aggiungi {
+  background-color: #3a5f45;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-aggiungi:hover {
+  background-color: #2e4d38;
+  transform: translateY(-2px);
+}
+
+/* ── Barra di filtro ── */
+.barra-filtro {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  border: 2px solid #c8e6c0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* ── Input ricerca per nome ── */
+.input-ricerca {
+  flex: 1;                         /* prende tutto lo spazio disponibile */
+  min-width: 160px;
+  padding: 10px 14px;
+  border: 2px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-ricerca:focus {
+  border-color: #3a5f45;
+}
+
+/* ── Select provincia ── */
+.select-provincia {
+  padding: 10px 14px;
+  border: 2px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  color: #3a5f45;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.select-provincia:focus {
+  border-color: #3a5f45;
+}
+
+/* ── Pulsante Filtra ── */
+.btn-filtra {
+  background-color: #3a5f45;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-filtra:hover {
+  background-color: #2e4d38;
+}
+
+/* ── Pulsante Reset ── */
+.btn-reset {
+  background: none;
+  border: 2px solid #e57373;      /* rosso chiaro per segnalare "annulla" */
+  color: #e57373;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-reset:hover {
+  background-color: #e57373;
+  color: #ffffff;
+}
+
+/* ── Contatore risultati ── */
+.contatore {
+  width: 100%;
+  max-width: 800px;
+  font-size: 0.85rem;
+  color: #5a8a6a;
+  margin: 0 0 12px 4px;
+}
+
+/* ── Lista ── */
+.lista {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Singola riga ── */
+.riga {
+  background-color: #ffffff;
+  border: 2px solid #c8e6c0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.riga:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(58, 95, 69, 0.15);
+  border-color: #3a5f45;
+}
+
+/* ── Info (sinistra): nome + provincia ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nome {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #3a5f45;
+}
+
+.provincia {
+  font-size: 0.82rem;
+  color: #5a8a6a;
+}
+
+/* ── Azioni (destra): Incontra + Elimina ── */
+.azioni {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/*Pulsante Modifica*/
+.btn-modifica {
+  background-color: #c8e6c0;
+  color: #3a5f45;
+  border: 2px solid #3a5f45;
+  padding: 8px 18px;
+  border-radius: 8px; /* arrotondamento più marcato */
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-modifica:hover {
+  background-color: #3a5f45;
+  color: #ffffff;
+}
+/* ── Pulsante Elimina ── */
+.btn-elimina {
+  background: none;
+  border: 2px solid #e57373;
+  color: #e57373;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-elimina:hover {
+  background-color: #e57373;
+  color: #ffffff;
+}
+
+/* ── Messaggio nessun risultato ── */
+.nessun-risultato {
+  text-align: center;
+  padding: 48px;
+  color: #5a8a6a;
+}
+
+.nessun-risultato span {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.nessun-risultato p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Aggiunti dal Codebase Analyzer */
+.loading {
+  text-align: center;
+  color: #3a5f45;
+  font-style: italic;
+  padding: 24px;
+}
+
+.errore {
+  text-align: center;
+  color: #e57373;
+  font-weight: bold;
+  padding: 24px;
+}

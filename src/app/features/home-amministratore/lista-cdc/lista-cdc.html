@@ -1,0 +1,96 @@
+<div class="lista-page">
+
+  <!-- LOADING -->
+  <div *ngIf="caricamento" class="loading">
+    ⏳ Caricamento in corso...
+  </div>
+
+  <!-- ERRORE -->
+  <div *ngIf="errore" class="errore">
+    ⚠️ {{ errore }}
+  </div>
+
+
+  <!-- CONTENUTO PRINCIPALE -->
+  <div *ngIf="!caricamento && !errore">
+    
+    <!-- ── Intestazione ── -->
+    <div class="intestazione">
+
+      <!-- Bottone torna indietro -->
+      <button class="btn-torna" (click)="torna()">← Torna</button>
+      
+      <!-- Titolo con icona tra i due bottoni -->
+      <div class="titolo-wrapper">
+
+        <span class="icona-titolo">{{ iconaPagina }}</span>
+        <h1 class="titolo">{{ titoloPagina }}</h1>
+      </div>
+      
+      <button class="btn-aggiungi" (click)="aggiungi()">+ Aggiungi</button>
+    
+    </div>
+
+    <!-- ── Barra di filtro ── -->
+    <div class="barra-filtro">
+
+      <!-- Ricerca per nome -->
+      <input
+        class="input-ricerca"
+        type="text"      
+        placeholder="Cerca per nome..."
+        [(ngModel)]="termineDiRicerca"
+      />
+
+      <!-- Filtro per provincia -->
+      <select class="select-provincia" [(ngModel)]="provinciaFiltro">
+        <option value="">Tutte le province</option>
+        <option *ngFor="let prov of province" [value]="prov">{{ prov }}</option>
+      </select>
+
+      <button class="btn-filtra" (click)="filtra()">🔍 Filtra</button>
+
+      <!-- pulsante di reset solo se c'è qualcosa da resettare -->
+      <button
+        class="btn-reset"
+        *ngIf="termineDiRicerca || provinciaFiltro"
+        (click)="resetFiltri()"
+      >✕ Reset</button>
+
+    </div>
+
+    <!-- Contatore risultati  -->
+    <p class="contatore">
+      {{ entitaFiltrate.length }} risultat{{ entitaFiltrate.length === 1 ? 'o' : 'i' }} trovat{{ entitaFiltrate.length === 1 ? 'o' : 'i' }}
+    </p>
+
+    <!-- Lista entità  -->
+    <div class="lista">
+
+      <!-- Messaggio se non ci sono risultati -->
+      <div class="nessun-risultato" *ngIf="entitaFiltrate.length === 0">
+        <span>😕</span>
+        <p>Nessun risultato trovato</p>
+      </div>
+
+
+      <div class="riga" *ngFor="let entita of entitaFiltrate">
+
+        <!-- nome + provincia -->
+        <div class="info">
+          <span class="nome">{{ getNome(entita) }}</span>
+          <span class="provincia">📍 {{ getProvincia(entita) }}</span>
+        </div>
+
+        <!-- Modifica + Elimina --> 
+        <div class="azioni">   
+          <button class="btn-modifica" (click)="modifica(entita)">✏️ Modifica</button>
+          <button class="btn-elimina" (click)="elimina(entita)">🗑️</button>
+        </div>
+
+      </div>  
+
+    </div>
+
+  </div>
+</div>

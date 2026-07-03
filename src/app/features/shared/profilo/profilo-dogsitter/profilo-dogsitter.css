@@ -1,0 +1,321 @@
+
+/* ── Pattern sezione (allineato a profilo.css) ── */
+.sezione {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgba(58, 95, 69, 0.15);
+}
+
+.sezione:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sezione-titolo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3a5f45;
+  margin: 0 0 16px 0;
+}
+
+/* ── Header con titolo + bottone affiancati ── */
+.header-flessibile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.header-flessibile .sezione-titolo {
+  margin-bottom: 0;
+}
+
+/* ── Campo max cani ── */
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.campo-max-cani {
+  max-width: 200px; /* Input numerico: larghezza contenuta */
+}
+
+.campo-form label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #3a5f45;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campo-form input[type="number"] {
+  padding: 10px 14px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1a3c34;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.campo-form input[type="number"]:focus {
+  border-color: #3a5f45;
+  box-shadow: 0 0 0 3px rgba(58, 95, 69, 0.1);
+}
+
+/* ── Messaggi di validazione inline ── */
+.match-msg {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.match-msg.error { color: #c0392b; }
+
+/* TOGGLE SECTION (label + griglia cliccabile)
+   Stile identico alla registrazione-dogsitter*/
+.toggle-section {
+  margin-bottom: 20px;
+}
+
+.toggle-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #3a5f45;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Box giorni ── */
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.day-box {
+  cursor: pointer;
+}
+
+/* Checkbox nascosta: usiamo lo span come elemento visivo */
+.day-box input[type="checkbox"] {
+  display: none;
+}
+
+.day-box span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 46px;
+  border: 2px solid #c8e6c0;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: #fff;
+  color: #3a5f45;
+  user-select: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.15s;
+}
+
+/* Stato selezionato: verde pieno */
+.day-box input[type="checkbox"]:checked + span {
+  background-color: #2a7a6a;
+  color: #ffffff;
+  border-color: #2a7a6a;
+}
+
+.day-box:hover span {
+  border-color: #3a5f45;
+  transform: translateY(-2px);
+}
+
+/* ── Pill taglie ── */
+.taglie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.taglia-box {
+  cursor: pointer;
+}
+
+.taglia-box input[type="checkbox"] {
+  display: none;
+}
+
+.taglia-box span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border: 2px solid #c8e6c0;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  background: #fff;
+  color: #3a5f45;
+  text-transform: uppercase;
+  user-select: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.15s;
+}
+
+/* Stato selezionato */
+.taglia-box input[type="checkbox"]:checked + span {
+  background-color: #2a7a6a;
+  color: #ffffff;
+  border-color: #2a7a6a;
+}
+
+.taglia-box:hover span {
+  border-color: #3a5f45;
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════
+   BOTTONE AGGIUNGI
+   ══════════════════════════════════════════════ */
+.btn-aggiungi {
+  background-color: #2a7a6a;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-aggiungi:hover {
+  background-color: #1e5c4e;
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════════
+   LISTA SERVIZI
+   ══════════════════════════════════════════════ */
+.servizi-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.servizio-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 10px;
+  background: #f9fdfb;
+  transition: border-color 0.2s;
+}
+
+.servizio-card:hover {
+  border-color: #3a5f45;
+}
+
+.servizio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.servizio-categoria {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #2a7a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.servizio-dettagli {
+  font-size: 0.82rem;
+  color: #5a8a6a;
+}
+
+.servizio-azioni {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icona {
+  background: none;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s, transform 0.15s;
+}
+
+.btn-icona:hover {
+  border-color: #3a5f45;
+  background: #f0f7f0;
+  transform: translateY(-1px);
+}
+
+.btn-icona.btn-elimina:hover {
+  border-color: #c0392b;
+  background: #fff5f5;
+}
+
+/* ── Lista vuota ── */
+.lista-vuota {
+  font-size: 0.88rem;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════
+   RECENSIONI
+   ══════════════════════════════════════════════ */
+.recensione-card {
+  padding: 14px 16px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 10px;
+  background: #f9fdfb;
+  margin-bottom: 10px;
+}
+
+.recensione-card:last-child {
+  margin-bottom: 0;
+}
+
+.recensione-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.recensione-autore {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3a5f45;
+}
+
+.recensione-voto {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2a7a6a;
+}
+
+.recensione-testo {
+  font-size: 0.88rem;
+  color: #555;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}

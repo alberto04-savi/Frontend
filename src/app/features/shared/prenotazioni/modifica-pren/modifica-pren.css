@@ -1,0 +1,140 @@
+/* Contenitore principale */
+.modifica-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header-modifica {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-modifica h2 {
+  margin: 0 0 0 15px;
+  color: #2c3e50;
+}
+
+.btn-indietro {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-indietro:hover {
+  background-color: #bdc3c7;
+}
+
+/* Avvisi esplicativi per l'utente */
+
+/* Form Card */
+.form-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+/* Input Styles */
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+/* Campi bloccati (Disabled) */
+.input-disabled {
+  background-color: #f1f2f6;
+  color: #7f8c8d;
+  cursor: not-allowed;
+  border: 1px dashed #bdc3c7;
+}
+
+/* Campi editabili */
+.input-attivo {
+  background-color: #fff;
+  border: 1px solid #3498db;
+  transition: box-shadow 0.2s;
+}
+
+.input-attivo:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Pulsanti Form */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-annulla {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-annulla:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-salva {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-salva:hover {
+  background-color: #2ecc71;
+}
+
+.caricamento {
+  text-align: center;
+  margin-top: 50px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.match-msg       { font-size: 0.78rem; font-weight: 600; margin-top: 2px; }
+
+.match-msg.ok    { color: #3a5f45; }
+
+.match-msg.error { color: #c0392b; }

@@ -1,0 +1,261 @@
+/* ══════════════════════════════════════════════════
+   VARIABILI (allineate al progetto)
+══════════════════════════════════════════════════ */
+:host {
+  --verde-scuro:  #3a5f45;
+  --verde-chiaro: #c8e6c0;
+  --sfondo:       #f0f7f0;
+  --bianco:       #ffffff;
+  --testo:        #2c3e30;
+  --testo-sub:    #6b8f72;
+  --bordo:        #b2d4b8;
+  --rosso:        #c0392b;
+  --radius:       12px;
+  --radius-sm:    8px;
+  --shadow:       0 2px 10px rgba(58, 95, 69, 0.10);
+  --shadow-lg:    0 6px 24px rgba(58, 95, 69, 0.14);
+}
+
+/* ══════════════════════════════════════════════════
+   PAGINA
+══════════════════════════════════════════════════ */
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  background: var(--sfondo);
+  min-height: 100vh;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--verde-scuro);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.btn-back:hover { background: var(--verde-chiaro); }
+
+.page-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   FORM CARD
+══════════════════════════════════════════════════ */
+.form-card {
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Campo generico ──────────────────────────────── */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo__label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--testo);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Select destinatario */
+.campo__select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  background: var(--sfondo);
+  color: var(--testo);
+  font-size: 0.9rem;
+  font-family: inherit;
+  appearance: auto;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.campo__select:focus {
+  outline: none;
+  border-color: var(--verde-scuro);
+}
+
+/* Destinatario readonly (modifica) */
+.campo__dest-readonly {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  background: #f5f9f5;
+}
+
+.dest-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--verde-chiaro);
+  color: var(--verde-scuro);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--verde-scuro);
+}
+
+.dest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.dest-nome {
+  font-weight: 700;
+  color: var(--testo);
+  font-size: 0.95rem;
+}
+.dest-tipo {
+  font-size: 0.78rem;
+  color: var(--testo-sub);
+}
+
+.dest-lock {
+  font-size: 1rem;
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+/* ── Stelle input ────────────────────────────────── */
+.stelle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stella-btn {
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: #d0d0d0;
+  cursor: pointer;
+  padding: 0 3px;
+  line-height: 1;
+  transition: color 0.15s, transform 0.1s;
+}
+.stella-btn:hover,
+.stella-btn--on  { color: #f0b429; }
+.stella-btn:hover { transform: scale(1.2); }
+
+.voto-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--testo-sub);
+  margin-left: 10px;
+}
+
+/* ── Textarea commento ───────────────────────────── */
+.campo__textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  background: var(--sfondo);
+  color: var(--testo);
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.campo__textarea:focus {
+  outline: none;
+  border-color: var(--verde-scuro);
+}
+.campo__textarea::placeholder { color: #aac5af; }
+
+/* ══════════════════════════════════════════════════
+   AZIONI FORM
+══════════════════════════════════════════════════ */
+.form-azioni {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.btn-annulla {
+  background: transparent;
+  color: var(--testo-sub);
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-annulla:hover {
+  background: var(--sfondo);
+  color: var(--testo);
+}
+
+.btn-conferma {
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+}
+.btn-conferma:hover:not(:disabled) {
+  background: #2e4d38;
+  transform: translateY(-1px);
+}
+.btn-conferma:active:not(:disabled) { transform: translateY(0); }
+.btn-conferma:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .page       { padding: 20px 14px 48px; }
+  .form-card  { padding: 20px 16px 18px; }
+  .page-title { font-size: 1.15rem; }
+
+  .form-azioni { flex-direction: column; }
+  .btn-annulla,
+  .btn-conferma { width: 100%; text-align: center; }
+}

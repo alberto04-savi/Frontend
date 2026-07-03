@@ -1,0 +1,28 @@
+<!-- Questo è il layout principale dell'applicazione -->
+<!-- Tutto ciò che si trova in questo file sarà visibile in ogni pagina del sito. -->
+
+<!--Intestazione fissa (es. Logo) visibile ovunque
+    Il Tag HEADER è un tag di tipo flow e può contenere qualsiasi tag di tipo flow (tranne header, footer e main).
+    Il tag header rappresenta un blocco introduttivo, la testata, di una particolare sezione. Non è un tag di tipo sectioning, 
+    non crea una nuova sezione. Generalmente il tag header contiene l’heading della sezione (tag h1-h6), ma non è obbligatorio.
+    Header non prende parte alla costruzione dell’outline. -->
+<header class="header-globale">
+
+  <!-- il path del src parte dalla cartella public -->
+  <img src="immagini/logo.png" alt="PAWTAL Logo" class="logo">
+</header>
+
+<!-- Angular insierisce i tag qui sotto-->
+<router-outlet></router-outlet>
+
+<!-- Piè di pagina fisso visibile in tutte le schermate 
+    Il Tag footer è un tag di tipo flow e può contenere qualsiasi tag di tipo flow (tranne header, footer e main). Il tag footer è il pedice
+    di una sezione del documento e generalmente contiene informazioni su chi ha scritto la sezione, su documenti legati alla sezione,
+    dati di copyright, ecc.. Non è un tag di tipo sectioning, non crea una nuova sezione e non prende parte alla costruzione
+    dell’outline. Il footer può essere piccolo e breve o molto ampio e contenere intere sezioni.-->
+<footer class="footer-globale">
+    <div class="footer-info">
+        <p><strong>Progetto d'Esame</strong>  Alberto Bagnolini - Elena Toselli </p>
+        <p> AA. 2025-2026</p>
+    </div>
+</footer>

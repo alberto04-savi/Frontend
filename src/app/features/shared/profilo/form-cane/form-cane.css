@@ -1,0 +1,117 @@
+/* ── File: form-cane.css ── */
+.form-page-container {
+  flex: 1;
+  background-color: #f0f7f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(58, 95, 69, 0.08);
+}
+
+.form-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #3a5f45;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #c8e6c0;
+  padding-bottom: 10px;
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.campo-form label {
+  font-size: 0.88rem;
+  color: #3a5f45;
+  font-weight: bold;
+}
+
+.campo-form input,
+.campo-form select,
+.campo-form textarea {
+  padding: 11px 14px;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  color: #333;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.campo-form input:focus,
+.campo-form select:focus,
+.campo-form textarea:focus {
+  border-color: #3a5f45;
+}
+
+/* Disabilitato se in fase di modifica (es. per blocco Microchip) */
+.campo-form input:disabled {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.gruppo-pulsanti {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  border-top: 1px solid #f0f7f0;
+  padding-top: 15px;
+}
+
+.btn-conferma {
+  background-color: #3a5f45;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-conferma:hover {
+  background-color: #2c4933;
+}
+
+.btn-annulla {
+  background-color: #ffffff;
+  color: #555555;
+  border: 1.5px solid #cccccc;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-annulla:hover {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.match-msg       { font-size: 0.78rem; font-weight: 600; margin-top: 2px; }
+
+.match-msg.ok    { color: #3a5f45; }
+
+.match-msg.error { color: #c0392b; }

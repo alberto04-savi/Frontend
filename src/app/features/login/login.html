@@ -1,0 +1,42 @@
+<main>
+  <section class="login-card">
+    <h1>ACCEDI AL TUO ACCOUNT</h1>
+
+    <form (ngSubmit)="login()" >
+      <div class="input-group">
+        <label for="username">NICKNAME 🦴</label>
+        <input
+          id="username"
+          name="username"
+          required
+          [(ngModel)]="username"
+          placeholder="Il tuo nickname"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="password">PASSWORD 🔑</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          [(ngModel)]="password"
+          placeholder="La tua password"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-main">ACCEDI</button>
+
+      <!-- Errore -->
+      <p class="error-message" *ngIf="errore">{{ errore }}</p>
+    </form>
+
+    <!-- Il blocco registrazione è nascosto per gli amministratori -->
+    <div class="registration-prompt" *ngIf="ruolo !== 'amministratore'">
+      <p>NON SEI REGISTRATO?</p>
+      <button class="btn-secondary" (click)="vaiRegistrazione()">REGISTRATI</button>
+    </div>
+
+  </section>
+</main>

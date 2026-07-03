@@ -1,0 +1,50 @@
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header__left">
+      <span class="page-icon">🐾</span>
+      <h1 class="page-title">Le mie recensioni</h1>
+    </div>
+    <button class="btn-aggiungi" (click)="aggiungiRecensione()">+ Aggiungi</button>
+  </div>
+
+  <!-- Caricamento -->
+  <div *ngIf="caricamento" class="stato-msg">
+    <div class="spinner"></div>
+    <span>Caricamento recensioni...</span>
+  </div>
+
+  <!-- Errore -->
+  <div *ngIf="errore" class="stato-errore">⚠️ {{ errore }}</div>
+
+  <!-- Stato vuoto -->
+  <div *ngIf="!caricamento && !errore && recensioni.length === 0" class="lista-vuota">
+    <div class="icona-vuota">📭</div>
+    <p>Non hai ancora scritto nessuna recensione.</p>
+    <p>Condividi la tua esperienza per aiutare gli altri utenti!</p>
+  </div>
+
+  <!-- Elenco recensioni -->
+  <div *ngIf="!caricamento && !errore && recensioni.length > 0">
+    <div class="griglia-recensioni">
+      <div *ngFor="let r of recensioni" class="rec-row">
+        <div class="rec-info">
+          <span class="rec-target">Dog sitter: <strong>{{ r.usernameDogsitter }}</strong></span>
+        </div>
+        <div class="rec-voto">
+          <span *ngFor="let i of [1,2,3,4,5]" class="stella" [class.stella--on]="i <= r.voto">★</span>
+        </div>
+        <p class="rec-testo">{{ r.commento }}</p>   
+
+        <!-- formatto la data -->
+        <span class="rec-data">{{ r.data | date:'dd/MM/yyyy' }}</span>
+        <div class="rec-azioni">
+          <button (click)="modificaRecensione(r)" class="btn-azione btn-modifica" title="Modifica">✏️</button>
+          <button (click)="eliminaRecensione(r)" class="btn-azione btn-elimina" title="Elimina">🗑️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

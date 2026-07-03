@@ -1,0 +1,79 @@
+<div class="modifica-container" *ngIf="!caricamento && prenotazione; else statoCaricamento">
+  
+  <div class="header-modifica">
+    <button class="btn-indietro" (click)="tornaIndietro()">← Indietro</button>
+    <h2>Modifica Prenotazione #{{ prenotazione.codiceId }} codiceID</h2>
+  </div>
+
+  <form class="form-card" (ngSubmit)="salva()">
+    <div class="form-group">
+      <!-- categoria servizio per dogsitter -->
+      <label *ngIf="prenotazione.categoriaServizio">Categoria Servizio</label>
+      <label *ngIf="prenotazione.CategoriaLezione">Categoria Lezione</label>
+      
+      <input type="text" [value]="prenotazione.categoriaServizio || prenotazione.CategoriaLezione" disabled class="input-disabled">
+    </div>
+
+    <!-- Scelta Cane del Cliente -->
+    <div class="form-group" *ngIf="ruolo === 'cliente'">
+      <label>Cane</label>
+      <!-- nome cane -->
+      <select name="cane" [(ngModel)]="prenotazione.nomeCane"
+            (ngModelChange)="onCaneChange($event)"
+            [disabled]="isCaneDisabilitato"
+            [ngClass]="{
+              'input-attivo':    !isCaneDisabilitato,
+              'input-disabled':  isCaneDisabilitato
+            }">                
+              <option *ngFor="let cane of caniDelCliente" [value]="cane.nome">{{ cane.nome }}</option>
+      </select>
+    </div>
+
+    <!--Per dogsitter -->
+    <div class="form-group" *ngIf="ruolo === 'dogsitter'">
+        <label>Cane</label>
+        <input type="text" [value]="prenotazione.nomeCane" disabled class="input-disabled">
+    </div>
+
+    <!-- Data e Ora (modificabili dal dogsitter) -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date" name="data" [(ngModel)]="prenotazione.dataSvolgimento"
+              pattern="\d{4}-\d{2}-\d{2}"
+              [disabled]="ruolo === 'cliente'"
+              [ngClass]="{'input-attivo': ruolo === 'dogsitter', 'input-disabled': ruolo === 'cliente'}"
+              required>
+        <span class="match-msg ok"
+              *ngIf="ruolo === 'dogsitter' && prenotazione.dataSvolgimento.length > 0 && dataSvolgimentoValida">
+          ✅ Data valida
+        </span>
+        <span class="match-msg error"
+              *ngIf="ruolo === 'dogsitter' && prenotazione.dataSvolgimento.length > 0 && !dataSvolgimentoValida">
+          ❌ Data non valida o nel passato
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Ora</label>
+        <input type="time" name="ora" [(ngModel)]="prenotazione.oraSvolgimento" 
+               [disabled]="ruolo === 'cliente'"
+               [ngClass]="{'input-attivo': ruolo === 'dogsitter', 'input-disabled': ruolo === 'cliente'}" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Prezzo Pattuito (€)</label>
+        <input type="number" [value]="prenotazione.prezzoPattuito" disabled class="input-disabled">
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn-annulla" (click)="tornaIndietro()">Annulla</button>
+      <button type="submit" class="btn-salva">Salva Modifiche</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #statoCaricamento>
+  <div class="caricamento">
+    <p>Caricamento dati prenotazione...</p>
+  </div>
+</ng-template>

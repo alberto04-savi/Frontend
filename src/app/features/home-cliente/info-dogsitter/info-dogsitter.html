@@ -1,0 +1,171 @@
+<!-- ── Loading / Errore ── -->
+<div class="loading-state" *ngIf="caricamento">Caricamento...</div>
+<div class="loading-state" *ngIf="errore && !caricamento">Dogsitter non trovato.</div>
+
+<!-- ── Pagina profilo ── -->
+<div class="profilo-shell" *ngIf="!caricamento && !errore && dogsitter">
+
+  <button class="btn-back" (click)="torna()">← Torna alla lista</button>
+
+  <!-- Header -->
+  <div class="profilo-header">
+    <div class="profilo-avatar">🐕</div>
+    <div class="profilo-header-info">
+      <h1>{{ dogsitter.nomeBattesimo }} {{ dogsitter.cognome }}</h1>
+      <p class="profilo-sottotitolo">Dogsitter</p>
+      <div class="profilo-badge">{{ dogsitter.provincia }}</div>
+    </div>
+  </div>
+
+  <div class="profilo-body">
+
+    <!-- Colonna sinistra: dati -->
+    <div class="profilo-info-col">
+
+      <div class="info-card">
+        <h3 class="info-card-title">👤 Dati personali</h3>
+        <div class="info-row">
+          <span class="info-label">Username</span>
+          <span>{{ dogsitter.username }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Telefono</span>
+          <span>{{ dogsitter.nTel }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">📍 Zona</h3>
+        <div class="info-row">
+          <span class="info-label">Indirizzo</span>
+          <span>{{ dogsitter.via }} {{ dogsitter.nCivico }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">CAP</span>
+          <span>{{ dogsitter.cap }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Provincia</span>
+          <span>{{ dogsitter.provincia }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">🐾 Taglie accettate</h3>
+        <div class="taglie-grid">
+          <span class="taglia-chip" *ngFor="let t of dogsitter.taglieCani">{{ t }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">📅 Disponibilità</h3>
+        <div class="taglie-grid">
+          <span class="taglia-chip verde" *ngFor="let g of dogsitter.giorniDisponibili">{{ g }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Colonna destra: servizi offerti -->
+    <div class="profilo-servizi-col">
+
+      <h2 class="servizi-title">🛎️ Servizi offerti</h2>
+
+      <div class="empty-state" *ngIf="offerte.length === 0">
+        Nessun servizio disponibile al momento.
+      </div>
+
+      <div class="servizio-card" *ngFor="let o of offerte">
+        <div class="servizio-info">
+          <div class="servizio-categoria">{{ o.categoria }}</div>
+      
+          <div class="servizio-meta">
+            <span class="servizio-durata" *ngIf="o.durata">
+              ⏱ {{ formatDurata(o.durata) }}
+            </span>
+            <span class="servizio-prezzo">€ {{ o.prezzoListino }}</span>
+          </div>
+        </div>
+        <button class="btn-prenota-servizio" (click)="apriForm(o)">
+          Prenota →
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FORM PRENOTAZIONE (overlay) -->
+<div class="form-overlay" *ngIf="formAperta" (click)="chiudiForm()">
+
+  
+  <div class="form-panel" (click)="$event.stopPropagation()">
+
+    <!-- Header del form -->
+    <div class="form-panel-header">
+      <div>
+        <h2>Prenota: {{ offertaSelezionata?.categoria }}</h2>
+        <p>
+          con {{ dogsitter?.nomeBattesimo }} {{ dogsitter?.cognome }}
+          · € {{ offertaSelezionata?.prezzoListino }}
+          <!-- durata nel sottotitolo del form -->
+          <span *ngIf="offertaSelezionata?.durata">
+            · ⏱ {{ formatDurata(offertaSelezionata!.durata!) }}
+          </span>
+        </p>
+      </div>
+      <button class="btn-chiudi" (click)="chiudiForm()">✕</button>
+    </div>
+
+    <!-- Calendario -->
+    <div class="cal-label">Seleziona un giorno disponibile</div>
+    <div class="giorni-grid">
+      <button
+        class="giorno-btn"
+        *ngFor="let g of giorniDisponibili"
+        [class.selezionato]="g === giornoSelezionato"
+        [class.non-disponibile]="!g.disponibile"
+        (click)="selezionaGiorno(g)">
+        <span class="giorno-nome">{{ g.nomeCorto }}</span>
+        <span class="giorno-data">{{ g.dataCorta }}</span>
+      </button>
+    </div>
+
+    <!-- Campi form -->
+    <div class="form-fields" *ngIf="giornoSelezionato">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Orario</label>
+          <select [(ngModel)]="prenotazione.orario">
+            <option value="">Seleziona</option>
+            <option *ngFor="let o of orariDisponibili" [value]="o">{{ o }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cane</label>
+          <select [(ngModel)]="prenotazione.nMicrochipCane">
+            <option value="">Seleziona un cane</option>
+            <option *ngFor="let c of caniCliente" [value]="c.nMicrochip">
+              {{ c.nome }} — {{ c.razza }} ({{ c.taglia }})
+            </option>
+          </select>
+          <span class="no-cani" *ngIf="caniCliente.length === 0">
+            Nessun cane nel tuo profilo. Aggiungilo dalla sezione Profilo.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="seleziona-hint" *ngIf="!giornoSelezionato">
+      👆 Seleziona prima un giorno per continuare
+    </div>
+
+    <button class="btn-conferma" [disabled]="!formValida" (click)="confermaPrenotazione()">
+      Conferma prenotazione
+    </button>
+
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" *ngIf="toastVisibile">✅ Prenotazione inviata con successo!</div>

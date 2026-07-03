@@ -1,0 +1,459 @@
+/* ══════════════════════════════════════════════════
+   profilo-dogsitter.css
+   Colori progetto: #3a5f45 | #c8e6c0 | #f0f7f0
+══════════════════════════════════════════════════ */
+
+:host {
+  --verde-scuro:  #3a5f45;
+  --verde-chiaro: #c8e6c0;
+  --sfondo:       #f0f7f0;
+  --bianco:       #ffffff;
+  --testo:        #2c3e30;
+  --testo-sub:    #6b8f72;
+  --bordo:        #b2d4b8;
+  --rosso:        #c0392b;
+  --radius:       12px;
+  --radius-sm:    8px;
+  --shadow:       0 2px 12px rgba(58,95,69,.10);
+  --shadow-lg:    0 8px 32px rgba(58,95,69,.18);
+}
+
+/* ── Shell ───────────────────────────────────────── */
+.profilo-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+  background: var(--sfondo);
+  min-height: 100vh;
+}
+
+/* ── Loading / Errore ────────────────────────────── */
+.loading-state {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--testo-sub);
+  font-size: 1rem;
+}
+
+/* ── Back ────────────────────────────────────────── */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--verde-scuro);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.btn-back:hover { opacity: .7; }
+
+/* ── Header profilo ──────────────────────────────── */
+.profilo-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.profilo-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--verde-chiaro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  border: 3px solid rgba(255,255,255,.3);
+}
+
+.profilo-header-info h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.profilo-sottotitolo {
+  font-size: 0.9rem;
+  opacity: .8;
+  margin: 0 0 8px;
+}
+
+.profilo-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.2);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ── Body a due colonne ──────────────────────────── */
+.profilo-body {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Info card ───────────────────────────────────── */
+.info-card {
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+.info-card-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 0 0 14px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--sfondo);
+  font-size: 0.9rem;
+  color: var(--testo);
+  gap: 12px;
+}
+.info-row:last-child { border-bottom: none; }
+
+.info-label {
+  font-weight: 600;
+  color: var(--testo-sub);
+  white-space: nowrap;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+/* ── Taglie / giorni chip ────────────────────────── */
+.taglie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.taglia-chip {
+  background: var(--verde-chiaro);
+  color: var(--verde-scuro);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.taglia-chip.verde { background: #a8d5b5; }
+
+/* ── Colonna servizi ─────────────────────────────── */
+.profilo-servizi-col {
+  position: sticky;
+  top: 20px;
+}
+
+.servizi-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.empty-state {
+  background: var(--bianco);
+  border: 1px dashed var(--bordo);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--testo-sub);
+  font-size: 0.9rem;
+}
+
+.servizio-card {
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s;
+}
+.servizio-card:hover { box-shadow: 0 4px 16px rgba(58,95,69,.14); }
+
+.servizio-categoria {
+  font-weight: 700;
+  color: var(--testo);
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}
+
+.servizio-prezzo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+}
+
+.btn-prenota-servizio {
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 9px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s, transform .15s;
+}
+.btn-prenota-servizio:hover { background: #2e4d38; transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════════════
+   OVERLAY PRENOTAZIONE
+══════════════════════════════════════════════════ */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,50,35,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn .18s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.form-panel {
+  background: var(--bianco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  animation: slideUp .22s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.form-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-panel-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--testo);
+  margin: 0 0 4px;
+}
+
+.form-panel-header p {
+  font-size: 0.85rem;
+  color: var(--testo-sub);
+  margin: 0;
+}
+
+.btn-chiudi {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--testo-sub);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.btn-chiudi:hover { background: var(--sfondo); }
+
+/* ── Calendario giorni ───────────────────────────── */
+.cal-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--testo-sub);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 10px;
+}
+
+.giorni-grid {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.giorno-btn {
+  background: var(--sfondo);
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 52px;
+  transition: background .15s, border-color .15s;
+}
+
+.giorno-btn:hover:not(.non-disponibile) {
+  background: var(--verde-chiaro);
+  border-color: var(--verde-scuro);
+}
+
+.giorno-btn.selezionato {
+  background: var(--verde-scuro);
+  border-color: var(--verde-scuro);
+}
+.giorno-btn.selezionato .giorno-nome,
+.giorno-btn.selezionato .giorno-data { color: var(--bianco); }
+
+.giorno-btn.non-disponibile {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.giorno-nome {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+  text-transform: uppercase;
+}
+.giorno-data {
+  font-size: 0.7rem;
+  color: var(--testo-sub);
+}
+
+/* ── Campi form ──────────────────────────────────── */
+.form-fields { margin-bottom: 16px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--testo-sub);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.form-group select {
+  border: 1.5px solid var(--bordo);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  color: var(--testo);
+  background: var(--sfondo);
+  outline: none;
+  transition: border-color .2s;
+}
+.form-group select:focus { border-color: var(--verde-scuro); }
+
+.no-cani {
+  font-size: 0.78rem;
+  color: var(--rosso);
+  font-style: italic;
+}
+
+.seleziona-hint {
+  text-align: center;
+  color: var(--testo-sub);
+  font-size: 0.88rem;
+  padding: 12px 0 20px;
+}
+
+/* ── Bottone conferma ────────────────────────────── */
+.btn-conferma {
+  width: 100%;
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background .2s, opacity .2s;
+}
+.btn-conferma:hover:not(:disabled) { background: #2e4d38; }
+.btn-conferma:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── Toast ───────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  animation: fadeIn .2s ease;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .profilo-body { grid-template-columns: 1fr; }
+  .profilo-servizi-col { position: static; }
+  .form-row { grid-template-columns: 1fr; }
+  .profilo-header { flex-direction: column; text-align: center; }
+}
+/* ── Servizio: meta (durata + prezzo) ────────────── */
+.servizio-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.servizio-durata {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--testo-sub);
+}

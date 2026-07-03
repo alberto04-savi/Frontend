@@ -1,0 +1,34 @@
+/* Reset globale */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* Colore di sfondo morbido per tutta l'app */
+}
+
+/* Rende l'app-root un contenitore flessibile a tutta altezza */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Fa in modo che i componenti caricati dal router riempiano lo spazio tra header e footer */
+/* app-root > — solo i figli diretti di app-root (il > esclude i discendenti più profondi)
+* — qualsiasi elemento
+:not(header) — che non sia un <header>
+:not(footer) — che non sia un <footer>
+:not(router-outlet) — che non sia un <router-outlet>
+In pratica seleziona solo il contenuto principale — quello che il router inserisce
+perchè il tag inserito dentro il <router-outlet> non è suo figlio ma è al suo stesso livello 
+quindi è figlio di app-root */
+app-root > *:not(header):not(footer):not(router-outlet) {
+  
+  /* questi mette i figli uno dopo l'altro in colona*/
+  display: flex; 
+  flex-direction: column; 
+
+  /* contenuto occupa tutto spazio disponibile quindi tra header e footer */
+  flex: 1;
+}

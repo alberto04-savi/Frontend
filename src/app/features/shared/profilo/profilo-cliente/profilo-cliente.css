@@ -1,0 +1,93 @@
+.sezione-specifica-cliente {
+  margin-top: 30px;
+  border-top: 2px dashed rgba(58, 95, 69, 0.15);
+  padding-top: 20px;
+}
+.header-flessibile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sezione-titolo-specifico {
+  font-size: 1.3rem;
+  color: #3a5f45;
+  margin: 0;
+}
+.btn-aggiungi-cane {
+  background-color: #c8e6c0;
+  color: #2b4733;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-aggiungi-cane:hover {
+  background-color: #b3dba9;
+}
+.griglia-cani-utente {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+}
+.cane-profilo-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1.5px solid #c8e6c0;
+  border-radius: 12px;
+  padding: 18px;
+  gap: 15px;
+  transition: box-shadow 0.2s;
+}
+.cane-profilo-card:hover {
+  box-shadow: 0 6px 12px rgba(58, 95, 69, 0.08);
+}
+.cane-avatar {
+  font-size: 2.5rem;
+  background-color: #f0f7f0;
+  padding: 12px;
+  border-radius: 50%;
+}
+.cane-dettagli {
+  flex: 1;
+}
+.cane-dettagli h3 {
+  margin: 0 0 5px 0;
+  color: #3a5f45;
+  font-size: 1.15rem;
+}
+.cane-dettagli p {
+  margin: 3px 0;
+  font-size: 0.88rem;
+  color: #555;
+}
+.cane-pulsanti {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-modifica-icona, .btn-elimina-icona {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.1s;
+}
+.btn-modifica-icona:hover { background-color: #e8f5e9; }
+.btn-elimina-icona:hover { background-color: #ffebee; }
+.lista-vuota {
+  color: #777;
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 20px;
+  background-color: #fcfdfc;
+  border: 1px solid rgba(200, 230, 192, 0.4);
+  border-radius: 8px;
+}

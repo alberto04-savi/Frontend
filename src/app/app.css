@@ -1,0 +1,29 @@
+/* Stile per l'intestazione globale dell'applicazione */
+.header-globale {
+  background-color: #d6ece4; /* Adattiamo leggermente lo sfondo per fondersi col logo, oppure usa #fff */
+  padding: 15px 20px; /* 15px sopra/sotto, 20px destra/sinistra */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra il contenuto orizzontalmente */
+}
+
+/* Stile per il logo */
+.logo {
+  max-height: 90px;
+  width: auto; /* indica che la larghezza si adatta automaticamente all'immagine */
+  object-fit: contain; /* Mantiene le proporzioni dell'immagine */
+  mix-blend-mode: multiply; /* Aiuta a fondere eventuali sfondi del logo con l'header */
+}
+
+/* Stile per il footer globale */
+.footer-globale {
+
+    background-color: #2e7d7a;
+    padding: 6px 20px; /* Spazio tra contenuto e bordo 20 indica la distanza dal bordo superiore e inferiore, 40 la distanza dai bordi laterali */
+    text-align: center; /* allinea il testo al centro */
+    font-size: 0.90rem; /* Leggermente più piccolo del testo normale */
+    color: #ffffff; /* Colore grigio scuro per il testo del footer */
+    margin-top: auto;  /* Spinge il footer verso il basso se il contenuto è insufficiente a riempire la pagina */
+    border-top: 1px solid #ddd; /* Aggiunge una linea sottile sopra il footer per separarlo visivamente dal resto del contenuto */
+}

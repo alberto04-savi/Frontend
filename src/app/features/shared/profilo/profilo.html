@@ -1,0 +1,82 @@
+<div class="profilo-page">
+
+  <div class="intestazione">
+    <button class="btn-torna" *ngIf="provenienza === 'lista-cdc'" (click)="tornaAllaLista()">← Torna alla lista</button>
+
+    <div class="titolo-wrapper">
+      <span class="icona-titolo">
+        <span *ngIf="ruolo === 'dogsitter'">🐾</span>
+        <span *ngIf="ruolo === 'cliente'">👤</span>
+      </span>
+      <h1 class="titolo">Il mio Profilo ({{ ruolo === 'dogsitter' ? 'Dog Sitter' : 'Cliente' }})</h1>
+    </div>
+    
+    <button class="btn-salva" (click)="salvaAnagrafica()">💾 Salva Modifiche</button>
+  </div>
+
+    <div class="form-card" *ngIf="utente">
+        
+        <div class="sezione">
+      <h2 class="sezione-titolo">👤 Informazioni Anagrafiche</h2>
+      <div class="riga-form">
+        <div class="campo-form">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="utente.nomeBattesimo" />
+        </div>
+        <div class="campo-form">
+          <label>Cognome</label>
+          <input type="text" [(ngModel)]="utente.cognome" />
+        </div>
+      </div>
+      <div class="campo-form">
+        <label>Telefono</label>
+        <input type="tel" [(ngModel)]="utente.nTel" maxlength="10" placeholder="Es. 3331234567" />
+        <span class="match-msg ok"    *ngIf="utente.nTel.length > 0 && nTelValido">✅ Numero valido</span>
+        <span class="match-msg error" *ngIf="utente.nTel.length > 0 && !nTelValido">❌ Inserisci esattamente 10 cifre</span>
+      </div>
+    </div>
+
+    <div class="sezione">
+      <h2 class="sezione-titolo">📍 Indirizzo di Residenza</h2>
+      <div class="campo-form">
+        <label>Via</label>
+        <input type="text" [(ngModel)]="utente.via" placeholder='Es. Via Roma' />
+        <span class="match-msg ok"    *ngIf="utente.via.length > 0 && viaValida">✅ Formato corretto</span>
+        <span class="match-msg error" *ngIf="utente.via.length > 0 && !viaValida">❌ Deve iniziare con "Via [Nome]"</span>
+      </div>
+      <div class="riga-form">
+        <div class="campo-form">
+          <label>N° Civico</label>
+          <input type="text" [(ngModel)]="utente.nCivico" placeholder="Es. 12" />
+          <span class="match-msg ok"    *ngIf="utente.nCivico.length > 0 && nCivicoValido">✅ OK</span>
+          <span class="match-msg error" *ngIf="utente.nCivico.length > 0 && !nCivicoValido">❌ Solo numeri</span>
+        </div>
+        <div class="campo-form">
+          <label>CAP</label>
+          <input type="text" [(ngModel)]="utente.cap" maxlength="5" placeholder="Es. 40121" />
+          <span class="match-msg ok"    *ngIf="utente.cap.length > 0 && capValido">✅ CAP valido</span>
+          <span class="match-msg error" *ngIf="utente.cap.length > 0 && !capValido">❌ Richieste 5 cifre</span>
+        </div>
+        <div class="campo-form">
+          <label>Provincia</label>
+          <select [(ngModel)]="utente.provincia">
+            <option value="" disabled>-- Seleziona --</option>
+            <option *ngFor="let p of province" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  
+    <div *ngIf="utente">
+  
+      <!-- property binding trasmetto dati -->
+      <app-profilo-dogsitter *ngIf="ruolo === 'dogsitter'" [dogsitter]="utenteDogsitter" [provenienza]="provenienza"></app-profilo-dogsitter>
+  
+      <app-profilo-cliente *ngIf="ruolo === 'cliente'" [cliente]="utenteCliente" [provenienza]="provenienza"></app-profilo-cliente>
+  
+    </div>
+  
+  
+  </div>
+</div>

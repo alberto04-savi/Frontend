@@ -1,0 +1,34 @@
+
+<div class="admin-home">
+
+  <button class="btn-uscita" (click)="logout()">Esci</button>
+
+  <h1 class="titolo"> Benvenuto Amministratore</h1>
+  <p class="sottotitolo">Quale entità vuoi gestire?</p>
+
+  <div class="cards-container">
+
+    <!-- Card Campo di Addestramento -->
+    <div class="card" (click)="navigateTo('campo')">
+      <span class="icona">🐕‍🦺</span>
+      <h2>Campi di Addestramento</h2>
+      <p>Gestisci i profili dei campi e le lezioni disponibili</p>
+    </div>
+
+    <!-- Card Dog Sitter -->
+    <div class="card" (click)="navigateTo('dogsitter')">
+      <span class="icona">🐾</span>
+      <h2>Dog Sitter</h2>
+      <p>Gestisci i profili dei dog sitter e le prenotazioni</p>
+    </div>
+
+    <!-- Card Utenti -->
+    <div class="card" (click)="navigateTo('cliente')">
+      <span class="icona">👤</span>
+      <h2>Clienti</h2>
+      <p>Gestisci gli account dei clienti registrati</p>
+    </div>
+
+  </div>
+
+</div>

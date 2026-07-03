@@ -1,0 +1,172 @@
+/* ── Colori principali ripresi dalla pagina di login ── */
+/* Verde scuro:  #3a5f45  (usato per titoli e bordi)    */
+/* Verde chiaro: #c8e6c0  (usato per sfondi leggeri)    */
+/* Bianco:       #ffffff  (sfondo pagina e card)         */
+
+
+/* ── Contenitore principale della pagina ── */
+.scelta-ruolo {
+
+  /* ── SFONDO FOTOGRAFICO ── */
+  background-image: url('/immagini/gold.jpeg');
+
+  /* cover:la foto viene ridimensionata per coprire TUTTA l'area del contenitore */
+  background-size: cover;
+
+  /* center center: il punto focale della foto rimane al centro
+     sia orizzontalmente che verticalmente */
+  background-position: center center;
+
+  /* no-repeat: la foto non si ripete in mosaico */
+  background-repeat: no-repeat;
+
+  /* ── OVERLAY SEMITRASPARENTE ──*/
+  position: relative; /* necessario perché ::before sia posizionato rispetto a questo elemento */
+
+  /* I figli (titolo, sottotitolo, cards-container) si dispongono in colonna */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra i figli sull'asse orizzontale */
+
+  /* min-height: 100vh fa sì che la pagina occupi almeno tutta l'altezza dello schermo
+     anche quando il contenuto è poco — la foto non si taglia mai in alto */
+  min-height: 100vh;
+
+  padding: 60px 24px; /* spazio interno: 60px sopra/sotto, 24px destra/sinistra */
+
+  font-family: Arial, sans-serif;
+}
+
+/* ── Overlay verde semitrasparente (pseudo-elemento) ── */
+.scelta-ruolo::before {
+
+  /* content: '' è obbligatorio: senza questo il pseudo-elemento non viene renderizzato */
+  content: '';
+
+  /* position: absolute + top/left/right/bottom: 0 fa sì che il velo
+     copra esattamente l'intera area di .scelta-ruolo */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* z-index: 0 mette il velo sopra la foto (che è lo sfondo) ma sotto
+     il contenuto reale (.titolo, .cards-container) che avrà z-index: 1 */
+  z-index: 0;
+}
+
+/* ── Tutti i figli diretti devono stare SOPRA l'overlay ──
+   Senza questo, il velo ::before coprirebbe anche testo e card */
+.scelta-ruolo > * {
+  /* z-index: 1 posiziona questi elementi sopra il ::before (z-index: 0) */
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Titolo principale ── */
+.titolo {
+  font-size: 2rem;
+
+  color: #ffffff; /* verde scuro */
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  text-align: center;
+
+  /* text-shadow aggiunge un'ombra leggera sotto le lettere per aumentare la leggibilità */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 4px rgba(0,0,0,0.6);
+}
+
+/* ── Sottotitolo ── */
+.sottotitolo {
+  font-size: 1rem;
+
+  color: #ffffff; /* verde scuro */
+
+  margin-bottom: 50px;
+  text-align: center;
+
+  /* stessa ombra del titolo per consistenza */
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
+}
+
+/* ── Riga che contiene le tre card ── */
+.cards-container {
+
+   /*card affiancate in orizzontale*/
+  display: flex;
+  flex-direction: row;
+
+  gap: 24px; /* spazio tra le card */
+
+  justify-content: center; /* centra le card nel contenitore */
+
+  /* le card non vanno sur righe diverse */
+  flex-wrap: nowrap;
+}
+
+/* ── Singola card ── */
+.card {
+
+  /* rgba con 4° valore = opacità: 0.75 rende la card semitrasparente */
+  background-color: rgba(255, 255, 255, 0.75);
+
+  /* blur sfoca TUTTO quello che sta dietro la card. */
+  backdrop-filter: blur(10px);
+
+  /* bordo bianco semitrasparente: si integra con l'effetto vetro */
+  border: 2px solid rgba(202, 201, 201, 0.5);
+
+  border-radius: 16px;
+
+  width: 220px;
+  padding: 32px 20px;
+  text-align: center;
+
+  /* ── Effetto hover ── */
+  cursor: pointer;
+
+  /* aggiungiamo border-color alla transizione così anche il bordo si anima nell'hover */
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* ── Effetto al passaggio del mouse ── */
+.card:hover {
+
+  transform: translateY(-6px);
+
+  /* ombra più intensa per "staccarsi" dalla foto di sfondo */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+
+  /* bordo diventa bianco opaco per maggiore contrasto */
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* ── Icona emoji grande ── */
+.icona {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ── Titolo dentro la card ── */
+.card h2 {
+  font-size: 1.1rem;
+
+  /* verde molto scuro: leggibile sul bianco semitrasparente della card */
+  color: #1a3c34;
+
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+/* ── Testo descrittivo dentro la card ── */
+.card p {
+  font-size: 0.85rem;
+  color: #2d553b;
+  line-height: 1.5;
+  margin: 0;
+}
+

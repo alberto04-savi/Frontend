@@ -1,0 +1,55 @@
+<div class="ds-shell">
+
+  <!--  SIDEBAR  -->
+  <aside class="sidebar" [class.chiusa]="!sidebarAperta">
+
+    <div class="sidebar-topbar">
+      <button class="btn-hamburger" (click)="toggleSidebar()" [title]="sidebarAperta ? 'Chiudi menu' : 'Apri menu'">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="sidebar-profile" *ngIf="sidebarAperta">
+      <div class="avatar">🐶</div>
+      <div class="ds-info">
+        <span class="ds-nome">{{ nomeDogsitter }}</span>
+        <span class="ds-ruolo">Dogsitter</span>
+      </div>
+    </div>
+
+    <hr class="divisore" *ngIf="sidebarAperta"/>
+
+    <nav class="menu" *ngIf="sidebarAperta">
+      
+      <a class="voce-menu" routerLink="prenotazioni" routerLinkActive="attivo">
+        <span class="icona-menu">📋</span>
+        <span class="label-menu">Prenotazioni</span>
+      </a>
+      <a class="voce-menu" routerLink="/home-dogsitter/profilo" routerLinkActive="attivo">
+        <span class="icona-menu">👤</span>
+        <span class="label-menu">Profilo</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer" *ngIf="sidebarAperta">
+      <button class="btn-logout" (click)="logout()">
+        <span class="icona-menu">🚪</span>
+        <span class="label-menu">Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+
+  <!--  CONTENUTO PRINCIPALE (prenotazioni oppure profilo)-->
+  <main class="contenuto-principale">
+
+
+    
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

@@ -1,0 +1,143 @@
+<!-- ── Loading / Errore ── -->
+<div class="loading-state" *ngIf="caricamento">Caricamento...</div>
+<div class="loading-state" *ngIf="errore && !caricamento">Campo non trovato.</div>
+
+<!-- ── Pagina profilo ── -->
+<div class="profilo-shell" *ngIf="!caricamento && !errore && campo">
+
+  <button class="btn-back" (click)="torna()">← Torna alla lista</button>
+
+  <!-- Header -->
+  <div class="profilo-header">
+    <div class="profilo-avatar">🏕️</div>
+    <div class="profilo-header-info">
+      <h1>{{ campo.nome }}</h1>
+      <p class="profilo-sottotitolo">Campo di Addestramento</p>
+      <div class="profilo-badge">{{ campo.provincia }}</div>
+    </div>
+  </div>
+
+  <div class="profilo-body">
+
+    <!-- Colonna sinistra: dati -->
+    <div class="profilo-info-col">
+
+      <div class="info-card">
+        <h3 class="info-card-title">📍 Sede</h3>
+        <div class="info-row">
+          <span class="info-label">Indirizzo</span>
+          <span>{{ campo.via }} {{ campo.nCivico }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">CAP</span>
+          <span>{{ campo.cap }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Provincia</span>
+          <span>{{ campo.provincia }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">📞 Contatti & Orari</h3>
+        <div class="info-row">
+          <span class="info-label">Telefono</span>
+          <span>{{ campo.nTel }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Apertura</span>
+          <span>{{ campo.orarioApertura }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Colonna destra: lezioni -->
+    <div class="profilo-servizi-col">
+
+      <h2 class="servizi-title">🎓 Lezioni disponibili</h2>
+
+      <div class="empty-state" *ngIf="lezioni.length === 0">
+        Nessuna lezione disponibile al momento.
+      </div>
+
+      <div class="servizio-card" *ngFor="let l of lezioni">
+        <div class="servizio-info">
+          <div class="servizio-categoria">{{ l.tipologia }}</div>
+          <div class="lezione-dettagli">
+            <span>📅 {{ l.data }} alle {{ l.ora }}</span>
+            <span>👥 Max {{ l.maxPartecipanti }} partecipanti</span>
+            <span>💶 € {{ l.costo }}</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-prenota-servizio" (click)="apriForm(l)">
+            Prenota 
+          </button>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FORM PRENOTAZIONE (overlay) -->
+<div class="form-overlay" *ngIf="formAperta" (click)="chiudiForm()">
+  <div class="form-panel" (click)="$event.stopPropagation()">
+
+    <div class="form-panel-header">
+      <div>
+        <h2>Prenota: {{ lezioneSelezionata?.tipologia }}</h2>
+        <p>{{ campo?.nome }} · € {{ lezioneSelezionata?.costo }}</p>
+      </div>
+      <button class="btn-chiudi" (click)="chiudiForm()">✕</button>
+    </div>
+
+    <!-- Riepilogo lezione -->
+    <div class="riepilogo-box">
+      <div class="riepilogo-row">
+        <span class="riepilogo-label">Data</span>
+        <span>{{ lezioneSelezionata?.data }}</span>
+      </div>
+      <div class="riepilogo-row">
+        <span class="riepilogo-label">Ora</span>
+        <span>{{ lezioneSelezionata?.ora }}</span>
+      </div>
+      <div class="riepilogo-row">
+        <span class="riepilogo-label">Tipologia</span>
+        <span>{{ lezioneSelezionata?.tipologia }}</span>
+      </div>
+      <div class="riepilogo-row">
+        <span class="riepilogo-label">Costo</span>
+        <span>€ {{ lezioneSelezionata?.costo }}</span>
+      </div>
+      <div class="riepilogo-row">
+        <span class="riepilogo-label">Max</span>
+        <span>{{ lezioneSelezionata?.maxPartecipanti }} partecipanti</span>
+      </div>
+    </div>
+
+   
+        <div class="form-group">
+          <label>Cane</label>
+          <select [(ngModel)]="prenotazione.nMicrochipCane">
+            <option value="">Seleziona un cane</option>
+            <option *ngFor="let c of caniCliente" [value]="c.nMicrochip">
+              {{ c.nome }} — {{ c.razza }} ({{ c.taglia }})
+            </option>
+          </select>
+          <span class="no-cani" *ngIf="caniCliente.length === 0">
+            Nessun cane nel tuo profilo. Aggiungilo dalla sezione Profilo.
+          </span>
+        </div>
+
+    <button class="btn-conferma" [disabled]="!formValida" (click)="confermaPrenotazione()">
+      Conferma prenotazione
+    </button>
+
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" *ngIf="toastVisibile">✅ Prenotazione inviata con successo!</div>

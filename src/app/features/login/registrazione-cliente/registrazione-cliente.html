@@ -1,0 +1,99 @@
+<div class="registrazione-page">
+  <section class="form-card">
+    
+    <div class="header-registrazione">
+      <button class="btn-torna" *ngIf="provenienza === 'lista-cdc'" (click)="tornaAllaLista()">← Indietro</button>
+      <h2>Registrazione Cliente</h2>
+    </div>
+
+    
+    <form #f="ngForm" (ngSubmit)="register(f)">
+
+      <div class="input-group">
+        <label for="username">NICKNAME 🦴</label>
+        <input id="username" name="username" [(ngModel)]="utente.username" required placeholder="Il tuo nickname" />
+      </div>
+
+      <div class="input-group">
+        <label for="nome">NOME</label>
+        <input id="nome" name="nomeBattesimo" [(ngModel)]="utente.nomeBattesimo" required placeholder="Il tuo nome" />
+      </div>
+
+      <div class="input-group">
+        <label for="cognome">COGNOME</label>
+        <input id="cognome" name="cognome" [(ngModel)]="utente.cognome" required placeholder="Il tuo cognome" />
+      </div>
+
+      <div class="input-group">
+        <label for="telefono">TELEFONO 📞</label>
+        <input id="telefono" name="nTel" [(ngModel)]="utente.nTel" required
+               placeholder="Es. 3331234567" maxlength="10" />
+        <span class="match-msg ok"    *ngIf="utente.nTel.length > 0 && nTelValido">✅ Numero valido</span>
+        <span class="match-msg error" *ngIf="utente.nTel.length > 0 && !nTelValido">❌ Inserisci esattamente 10 cifre</span>
+      </div>
+
+      <div class="input-group">
+        <label for="password">PASSWORD 🔑</label>
+        <input id="password" name="password" type="password"
+               [(ngModel)]="utente.password" required
+               placeholder="Scegli una password" />
+        <ul class="password-requisiti" *ngIf="utente.password?.length ?? 0 > 0">
+          <li [class.ok]="hasMinLength">{{ hasMinLength ? '✅' : '❌' }} Almeno 8 caratteri</li>
+          <li [class.ok]="hasUppercase">{{ hasUppercase ? '✅' : '❌' }} Almeno una lettera maiuscola</li>
+          <li [class.ok]="hasNumber">{{ hasNumber ? '✅' : '❌' }} Almeno un numero</li>
+          <li [class.ok]="hasSpecial">{{ hasSpecial ? '✅' : '❌' }} Almeno un carattere speciale (!@#...)</li>
+        </ul>
+      </div>
+
+      <div class="input-group">
+        <label for="confermaPassword">CONFERMA PASSWORD 🔑</label>
+        <input id="confermaPassword" name="confermaPassword" type="password"
+               [(ngModel)]="confermaPassword" required
+               placeholder="Ripeti la password" />
+        <span class="match-msg ok"    *ngIf="(confermaPassword.length) > 0 && confermaPassword === utente.password">✅ Le password coincidono</span>
+        <span class="match-msg error" *ngIf="(confermaPassword.length) > 0 && confermaPassword !== utente.password">❌ Le password non coincidono</span>
+      </div>
+
+      <div class="input-group">
+        <label>INDIRIZZO 🏠</label>
+        <div class="input-row">
+          <div class="input-group flex-3">
+            <p class="sub-label">VIA</p>
+            <input type="text" name="via" placeholder="Es. Via Roma" [(ngModel)]="utente.via" required />
+            <span class="match-msg ok"    *ngIf="utente.via.length > 0 && viaValida">✅ Formato corretto</span>
+            <span class="match-msg error" *ngIf="utente.via.length > 0 && !viaValida">❌ Deve iniziare con "Via [Nome]"</span>
+          </div>
+          <div class="input-group flex-1">
+            <p class="sub-label">CIVICO</p>
+            <input type="text" name="nCivico" placeholder="12" [(ngModel)]="utente.nCivico" required />
+            <span class="match-msg ok"    *ngIf="utente.nCivico.length > 0 && nCivicoValido">✅ OK</span>
+            <span class="match-msg error" *ngIf="utente.nCivico.length > 0 && !nCivicoValido">❌ Solo numeri</span>
+          </div>
+        </div>
+        <div class="input-row" style="margin-top: 0;">
+          <div class="input-group flex-1">
+            <p class="sub-label">CAP</p>
+            <input type="text" name="cap" placeholder="40121" maxlength="5" [(ngModel)]="utente.cap" required />
+            <span class="match-msg ok"    *ngIf="utente.cap.length > 0 && capValido">✅ CAP valido</span>
+            <span class="match-msg error" *ngIf="utente.cap.length > 0 && !capValido">❌ Richieste 5 cifre</span>
+          </div>
+          <div class="input-group flex-2">
+            <p class="sub-label">PROVINCIA</p>
+            <select name="provincia" [(ngModel)]="utente.provincia" required>
+              <option value="" disabled>-- Seleziona --</option>
+              <option *ngFor="let p of province" [value]="p">{{ p }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-submit" type="submit">REGISTRATI</button>
+      </div>
+
+    </form>
+
+    <p class="error"   *ngIf="errore">{{ errore }}</p>
+    <p class="success" *ngIf="successo">{{ successo }}</p>
+  </section>
+</div>

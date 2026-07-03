@@ -1,0 +1,239 @@
+/* ══════════════════════════════════════════════════
+   VARIABILI (allineate al progetto)
+══════════════════════════════════════════════════ */
+:host {
+  --verde-scuro:  #3a5f45;
+  --verde-chiaro: #c8e6c0;
+  --sfondo:       #f0f7f0;
+  --bianco:       #ffffff;
+  --testo:        #2c3e30;
+  --testo-sub:    #6b8f72;
+  --bordo:        #b2d4b8;
+  --rosso:        #c0392b;
+  --rosso-light:  #fdecea;
+  --radius:       12px;
+  --radius-sm:    8px;
+  --shadow:       0 2px 10px rgba(58, 95, 69, 0.10);
+}
+
+/* ══════════════════════════════════════════════════
+   PAGINA
+══════════════════════════════════════════════════ */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  background: var(--sfondo);
+  min-height: 100vh;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.page-header__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-icon  { font-size: 1.6rem; }
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--verde-scuro);
+  margin: 0;
+}
+
+/* ── Bottone Aggiungi ────────────────────────────── */
+.btn-aggiungi {
+  background: var(--verde-scuro);
+  color: var(--bianco);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-aggiungi:hover  { background: #2e4d38; transform: translateY(-1px); }
+.btn-aggiungi:active { transform: translateY(0); }
+
+/* ══════════════════════════════════════════════════
+   LISTA
+══════════════════════════════════════════════════ */
+.griglia-recensioni {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Card recensione ─────────────────────────────── */
+.rec-row {
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto auto;
+  gap: 6px 14px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.rec-row:hover { box-shadow: 0 4px 16px rgba(58, 95, 69, 0.14); }
+
+/* Info dogsitter – riga 1, colonna 1 */
+.rec-info {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rec-target {
+  font-size: 0.9rem;
+  color: var(--testo-sub);
+}
+.rec-target strong {
+  color: var(--testo);
+  font-weight: 700;
+}
+
+/* Stelle – riga 2, colonna 1 */
+.rec-voto {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  gap: 2px;
+}
+
+.stella     { font-size: 1.1rem; color: #d0d0d0; line-height: 1; }
+.stella--on { color: #f0b429; }
+
+/* Commento – riga 3, colonna 1 */
+.rec-testo {
+  grid-column: 1;
+  grid-row: 3;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--testo);
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+/* Data – riga 4, colonna 1, allineata a destra */
+.rec-data {
+  grid-column: 1;
+  grid-row: 4;
+  font-size: 0.78rem;
+  color: var(--testo-sub);
+  text-align: right;
+  align-self: end;
+  margin-top: 4px;
+}
+
+/* Azioni – colonna 2, tutte le righe, senza bordi */
+.rec-azioni {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-azione {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+  line-height: 1;
+}
+.btn-modifica:hover { background: var(--verde-chiaro); }
+.btn-elimina:hover  { background: var(--rosso-light); }
+
+/* ══════════════════════════════════════════════════
+   STATO VUOTO
+══════════════════════════════════════════════════ */
+.lista-vuota {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--testo-sub);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.icona-vuota { font-size: 3rem; }
+
+/* ══════════════════════════════════════════════════
+   STATI: caricamento ed errore
+══════════════════════════════════════════════════ */
+.stato-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  color: var(--testo-sub);
+  font-size: 0.95rem;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--verde-chiaro);
+  border-top-color: var(--verde-scuro);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stato-errore {
+  background: #fdecea;
+  color: #c0392b;
+  border: 1px solid #f5c6c2;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .page { padding: 20px 14px 48px; }
+  .page-title { font-size: 1.25rem; }
+
+  .rec-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .rec-azioni {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .rec-data { text-align: left; }
+}

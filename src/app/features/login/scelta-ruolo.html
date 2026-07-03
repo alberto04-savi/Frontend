@@ -1,0 +1,31 @@
+<div class="scelta-ruolo">
+
+  <h1 class="titolo">Accedi alla piattaforma</h1>
+  <p class="sottotitolo">Chi sei?</p>
+
+  <div class="cards-container">
+
+    <!-- Card Cliente -->
+    <div class="card" (click)="navigateTo('cliente')">
+      <span class="icona">👤</span>
+      <h2>Cliente</h2>
+      <p>Prenota servizi di dog sitting o corsi di addestramento per il tuo cane</p>
+    </div>
+
+    <!-- Card Dog Sitter -->
+    <div class="card" (click)="navigateTo('dogsitter')">
+      <span class="icona">🐾</span>
+      <h2>Dog Sitter</h2>
+      <p>Gestisci le tue disponibilità e le prenotazioni ricevute dai clienti</p>
+    </div>
+
+    <!-- Card Amministratore -->
+    <div class="card" (click)="navigateTo('amministratore')">
+      <span class="icona">🛡️</span>
+      <h2>Amministratore</h2>
+      <p>Gestisci utenti, servizi e supervisiona l'intera piattaforma</p>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,135 @@
+/* === MAIN / LOGIN === */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f9fdfb;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2a7a6a; /* titolo verde scuro di scelta-ruolo */
+}
+
+/* === FORM === */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+  color: #3a5f45;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #c8e6c0; /* bordo verde chiaro di scelta-ruolo */
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #2a7a6a;
+  box-shadow: 0 0 0 3px rgba(42, 122, 106, 0.15);
+}
+
+/* === ERRORE === */
+.error-message {
+  color: #d93025;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* === BOTTONI === */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(58, 95, 69, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-main {
+  background-color: #2a7a6a; /* verde scuro principale di scelta-ruolo */
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(42, 122, 106, 0.25);
+}
+
+/* === REGISTRAZIONE === */
+.registration-prompt {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.registration-prompt p {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0;
+  letter-spacing: 0.3px;
+  color: #5a8a6a;
+}
+
+/* Bottone registrazione: stesso stile card-hover di scelta-ruolo */
+.btn-secondary {
+  background-color: #ffffff;
+  color: #3a5f45;
+  border: 2px solid #c8e6c0;
+  border-radius: 50px;
+  padding: 12px 40px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(58, 95, 69, 0.2);
+  border-color: #3a5f45;
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}

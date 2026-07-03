@@ -1,0 +1,94 @@
+<div class="sezione-dogsitter">
+
+  <!-- SEZIONE: Dati Professionali (dogsitter-specifici) -->
+  <div class="sezione">
+    <h2 class="sezione-titolo">🐾 Dati Professionali</h2>
+
+    <!-- Numero massimo di cani gestibili -->
+    <div class="campo-form campo-max-cani">
+      <label>Numero Massimo di Cani 🐶</label>
+      <input type="number" min="1" max="10"
+             [(ngModel)]="dogsitter.maxCani"
+             placeholder="Es. 3" />
+      <span class="match-msg error"
+            *ngIf="dogsitter.maxCani !== null && dogsitter.maxCani < 1">
+        ❌ Deve essere almeno 1
+      </span>
+    </div>
+
+    <!-- Giorni di lavoro-->
+    <div class="toggle-section">
+      <span class="toggle-label">📅 Giorni di Lavoro</span>
+      <div class="days-grid">
+        <label class="day-box" *ngFor="let g of giorni">
+          <input type="checkbox"
+                 [value]="g"
+                 (change)="toggleGiorno(g)"
+                 [checked]="dogsitter.giorniDisponibili.includes(g)" />
+          <span>{{ g }}</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Taglie accettate -->
+    <div class="toggle-section">
+      <span class="toggle-label">🐾 Taglie Accettate</span>
+      <div class="taglie-grid">
+        <label class="taglia-box" *ngFor="let t of taglie">
+          <input type="checkbox"
+                 [value]="t"
+                 (change)="toggleTaglia(t)"
+                 [checked]="dogsitter.taglieCani.includes(t)" />
+          <span>{{ t }}</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEZIONE: Servizi Offerti-->
+  <div class="sezione">
+    <div class="header-flessibile">
+      <h2 class="sezione-titolo">🛎️ Servizi Offerti</h2>
+      <button type="button" class="btn-aggiungi" (click)="vaiAFormServizio()">
+        ➕ Nuovo Servizio
+      </button>
+    </div>
+
+    <p *ngIf="serviziOfferti.length === 0" class="lista-vuota">
+      Nessun servizio ancora registrato.
+    </p>
+
+    <div class="servizi-lista" *ngIf="serviziOfferti.length > 0">
+      <div class="servizio-card" *ngFor="let s of serviziOfferti">
+        <div class="servizio-info">
+          <span class="servizio-categoria">{{ s.categoria }}</span>
+          <span class="servizio-dettagli">⏱ {{ s.durata }} min &nbsp;·&nbsp; 💶 {{ s.prezzoListino }}€</span>
+        </div>
+        <div class="servizio-azioni">
+          <button type="button" class="btn-icona"
+                  title="Modifica" (click)="vaiAFormServizio(s)">✏️</button>
+          <button type="button" class="btn-icona btn-elimina"
+                  title="Rimuovi" (click)="rimuoviServizio(s)">🗑️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--SEZIONE: Recensioni Ricevute -->
+  <div class="sezione">
+    <h2 class="sezione-titolo">⭐ Recensioni Ricevute</h2>
+    <p *ngIf="recensioni.length === 0" class="lista-vuota">
+      Nessuna recensione ricevuta.
+    </p>
+    <div class="recensioni-lista" *ngIf="recensioni.length>0">
+        <div class="recensione-card" *ngFor="let r of recensioni">
+          <div class="recensione-header">
+            <span class="recensione-autore">👤 {{ r.usernameCliente }}</span>
+            <span class="recensione-voto">{{ r.voto }} / 5 ⭐</span>
+          </div>
+          <p class="recensione-testo">{{ r.commento }}</p>
+        </div>
+    </div>
+  </div>
+
+</div>

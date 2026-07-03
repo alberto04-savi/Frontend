@@ -1,0 +1,39 @@
+<div class="sezione-specifica-cliente">
+  
+  <div class="header-flessibile">
+    <h2 class="sezione-titolo-specifico">🦮 Cani di Proprietà Registrati</h2>
+    <button type="button" class="btn-aggiungi-cane" (click)="vaiAFormCane()">➕ Registra Nuovo Cane</button>
+  </div>
+
+  <!-- Caricamento in corso -->
+  <p *ngIf="caricamento" class="lista-vuota">⏳ Caricamento cani in corso...</p>
+
+  <!-- Errore -->
+  <p *ngIf="errore" class="lista-vuota">⚠️ {{ errore }}</p>
+
+  <!-- Dati caricati correttamente -->
+  <ng-container *ngIf="!caricamento && !errore">
+
+    <div class="griglia-cani-utente" *ngIf="caniUtente.length > 0; else noCani">
+      <div class="cane-profilo-card" *ngFor="let cane of caniUtente">
+        <div class="cane-avatar">🐶</div>
+        <div class="cane-dettagli">
+          <h3>{{ cane.nome }}</h3>
+          <p><strong>Razza:</strong> {{ cane.razza }} ({{ cane.taglia }})</p>
+          <p><strong>Microchip ID:</strong> {{ cane.nMicrochip }}</p>
+          <p *ngIf="cane.noteComportamento"><em>"{{ cane.noteComportamento }}"</em></p>
+        </div>
+        <div class="cane-pulsanti">
+          <button type="button" class="btn-modifica-icona" title="Modifica Informazioni" (click)="vaiAFormCane(cane)">✏️</button>
+          <button type="button" class="btn-elimina-icona" title="Elimina Cane" (click)="eliminaCane(cane.nMicrochip)">🗑️</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noCani>
+      <p class="lista-vuota">Non risultano cani associati al tuo account cliente.</p>
+    </ng-template>
+
+  </ng-container>
+
+</div>
